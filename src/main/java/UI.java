@@ -25,11 +25,7 @@ public class UI extends JFrame {
         ntListener.getNetworkTableInstance().addListener(
                 ntListener.getSelectedBranchSubscriber(),
                 EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                (event) -> {
-                    selectedBranch.setText(ntListener.getSelectedBranch().toString());
-                    System.out.println(ntListener.getSelectedBranch());
-                }
-
+                (event) -> selectedBranch.setText(ntListener.getSelectedBranch().toString())
         );
 
         ntListener.getNetworkTableInstance().addConnectionListener(
@@ -37,10 +33,13 @@ public class UI extends JFrame {
                 (event) -> {
                     if (event.is(NetworkTableEvent.Kind.kConnected)) {
                         setTitle("BranchSelector | Connected");
+                        selectedBranch.setText(ntListener.getSelectedBranch().toString());
                     } else if (event.is(NetworkTableEvent.Kind.kDisconnected)) {
                         setTitle("BranchSelector | Disconnected");
+                        selectedBranch.setText("");
                     } else {
                         setTitle("BranchSelector | Unknown");
+                        selectedBranch.setText(ntListener.getSelectedBranch().toString());
                     }
                 }
         );

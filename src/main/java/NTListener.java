@@ -36,9 +36,9 @@ public class NTListener implements AutoCloseable {
 
         this.selectedBranchSubscriber = ntNodeTable
                 .getStringTopic(Constants.SELECTED_BRANCH)
-                .subscribe("");
+                .subscribe(Constants.DEFAULT_BRANCH.toString());
 
-        this.branchPublisher.set("");
+        this.branchPublisher.set(Constants.DEFAULT_BRANCH.toString());
     }
 
     public NetworkTableInstance getNetworkTableInstance() {
