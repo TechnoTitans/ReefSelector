@@ -7,7 +7,7 @@ plugins {
 }
 
 application {
-    mainClass = 'frc.robot.Main'
+    mainClass = 'Main'
 }
 
 wpilibTools.deps.wpilibVersion = wpi.versions.wpilibVersion.get()

@@ -36,9 +36,7 @@ public class NTListener implements AutoCloseable {
 
         this.selectedBranchSubscriber = ntNodeTable
                 .getStringTopic(Constants.SELECTED_BRANCH)
-                .subscribe(Constants.DEFAULT_BRANCH.toString());
-
-        this.branchPublisher.set(Constants.DEFAULT_BRANCH.toString());
+                .subscribe("ERROR");
     }
 
     public NetworkTableInstance getNetworkTableInstance() {
@@ -53,8 +51,12 @@ public class NTListener implements AutoCloseable {
         return selectedBranchSubscriber;
     }
 
+    public String getRawSelectedBranch() {
+        return selectedBranchSubscriber.get();
+    }
+
     public Constants.Branch getSelectedBranch() {
-        return Constants.Branch.valueOf(selectedBranchSubscriber.get());
+        return Constants.Branch.valueOf(getRawSelectedBranch());
     }
 
     @Override

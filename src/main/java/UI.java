@@ -33,12 +33,17 @@ public class UI extends JFrame {
                 (event) -> {
                     if (event.is(NetworkTableEvent.Kind.kConnected)) {
                         setTitle("BranchSelector | Connected");
-                        selectedBranch.setText(ntListener.getSelectedBranch().toString());
+                        if (!ntListener.getRawSelectedBranch().equals("ERROR")) {
+                            selectedBranch.setText(ntListener.getSelectedBranch().toString());
+                        }
                     } else if (event.is(NetworkTableEvent.Kind.kDisconnected)) {
                         setTitle("BranchSelector | Disconnected");
-                        selectedBranch.setText("");
+                        selectedBranch.setText("DISCONNECTED");
                     } else {
                         setTitle("BranchSelector | Unknown");
+                    }
+
+                    if (event.is(NetworkTableEvent.Kind.kPublish)) {
                         selectedBranch.setText(ntListener.getSelectedBranch().toString());
                     }
                 }
@@ -48,13 +53,16 @@ public class UI extends JFrame {
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BranchSelector | Disconnected");
-        setMinimumSize(new Dimension(450, 450));
-        setPreferredSize(new Dimension(450, 450));
+        setMinimumSize(new Dimension(450, 250));
+        setPreferredSize(new Dimension(450, 250));
+        setResizable(false);
         setLocationRelativeTo(null);
+        setAlwaysOnTop(true);
 
         selectedBranch.setHorizontalAlignment(SwingConstants.CENTER);
         selectedBranch.setFont(new Font("Arial", Font.PLAIN, 50));
         selectedBranch.setForeground(Color.WHITE);
+        selectedBranch.setText("DISCONNECTED");
         add(selectedBranch);
     }
 }

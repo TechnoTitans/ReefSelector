@@ -17,7 +17,6 @@ public class Constants {
     public static final String REEF_NETWORK_TABLE = "BranchSelector";
     public static final String SELECTED_BRANCH = "BranchPublisher";
     public static final String DASH_SELECTED_BRANCH = "SelectedBranch";
-    public static final Branch DEFAULT_BRANCH = Branch.LEFT_L2;
 
     public static Map<Integer, Branch> KEYBOARD_TO_BRANCH = Map.of(
             53, Branch.LEFT_L4,
